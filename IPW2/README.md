@@ -1,6 +1,6 @@
-# Product list output application using sqlite databas
+# Product list output application using sqlite database
 
-There are 3 xml layouts written for the program.
+## There are 3 xml layouts written for the program.
 
 
 For entering new products:
@@ -15,7 +15,7 @@ To display added products:
 
 items_row.xml
 
-class MainActivity
+## class MainActivity
 
 The AddRecord(),updateRecordDialog(), deleteRecordAlertDialog(), setUpListOfDataIntoRecyclerView()  are defined in the MainActivity class, which performs the basic database actions, CREATE. DELETE. UPDATE, READ.
 ```
@@ -24,6 +24,44 @@ fun addRecord(view: View){
         var name = etName.text.toString()
         var type = etType.text.toString()
         var price = etPrice.text.toString().toInt()
+```
+## class ItemAdapter
+adapter make it easy to link data to the control
+The purpose of an adapter is to provide child views for a container. The adapter takes the data and metadata of a particular container and builds each child view
+```
+override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.items_row, parent, false)
+        return ViewHolder(itemView)
+    }
+    
+    override fun getItemCount(): Int {
+
+        return items.size
+    }
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
+        val tvName = itemView.tvName
+        val tvType = itemView.tvType
+        val tvPrice = itemView.tvPrice
+        val ivEdit = itemView.ivEdit
+        val ivDelete = itemView.ivDelete
+        val llMain = itemView.llMain
+
+    }
+
+```
+
+## class EmpModelClass
+Stores models for the database
+```
+data class EmpModelClass(
+    val id: Int,
+    val tvName: String,
+    val tvType: String,
+    val tvPrice: Int,
+    )
 ```
 Here are some screenshots:
 
