@@ -63,6 +63,28 @@ data class EmpModelClass(
     val tvPrice: Int,
     )
 ```
+
+## DatabaseHandler
+A class designed for communicating with a database and performing operations on it
+
+For example, the method of creating a new recor:
+```
+fun addEmployee(emp : EmpModelClass): Long{
+
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+
+
+        contentValues.put("name" , emp.tvName.toString())
+        contentValues.put("type", emp.tvType.toString())
+        contentValues.put("price", emp.tvPrice.toString().toInt())
+        // Inserting Row
+        val success = db.insert("EmployeeTable", null, contentValues)
+        db.close()
+
+        return  success
+    }
+```
 Here are some screenshots:
 
 ![8ecd1f61-1415-4619-86c1-a1064617f667](https://user-images.githubusercontent.com/66710649/149754408-9551dbde-d3f7-43e9-bee4-17ce8f3092d8.jpeg)
